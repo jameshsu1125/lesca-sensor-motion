@@ -1,7 +1,7 @@
 {
-	"name": "npm-base-package",
+	"name": "lesca-sensor-motion",
 	"version": "0.0.0",
-	"description": "npm-base-package",
+	"description": "mobile sensor : device motion. request permission and return total gravity",
 	"main": "lib/index.js",
 	"scripts": {
 		"start": "webpack-dev-server --mode development",
@@ -46,6 +46,9 @@
 	"homepage": "https://github.com/jameshsu1125/npm-base-package",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:jameshsu1125/npm-base-package.git"
+		"url": "git@github.com:jameshsu1125/lesca-sensor-motion.git"
+	},
+	"dependencies": {
+		"mobile-detect": "^1.4.4"
 	}
 }
