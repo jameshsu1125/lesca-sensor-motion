@@ -11,25 +11,42 @@ $ npm install lesca-sensor-motion --save
 ```javascript
 import Motion from 'lesca-sensor-motion';
 
-clicked();
-{
-	Motion.init(() => {
-		// IOS 14+ require permission
-		Motion.addEvent(20, (e) => {
-			// add Event to get gravity
-			alert(e);
-		});
-	});
+function require_permission() {
+	Motion.init(
+		function () {
+			// permission granted
+			console.log('permission granted');
+
+			Motion.addEvent(20, (e) => {
+				// shake your mobile device. alert the gravity directly.
+				alert(e);
+			});
+		},
+		function () {
+			// permission deined
+			console.log('permission deined');
+		}
+	);
 }
 
-<button onClick={this.clicked}></button>;
+<button onClick={require_permission}></button>;
 ```
 
 # Methods
 
-| Methods                  |             options              | default |
-| :----------------------- | :------------------------------: | ------: |
-| init(callback)           | callback when permission granted |         |
-| addEvent( v=20,callback) |   v: power of Motion, callback   |  v = 20 |
-| destory()                |          remove events           |         |
-| disable(true)            |         .disable = true          |    true |
+| method                       | options  |         description          | default |
+| :--------------------------- | :------: | :--------------------------: | ------: |
+| init(granted, deined)        | granted  | call when permission granted |         |
+|                              |  deined  | call when permission deined  |         |
+| addEvent( gravity, callback) | gravity  | exceeds the value of gravity |      20 |
+|                              | callback | call when over gravity value |         |
+| destory()                    |          |         remove event         |         |
+
+# Properties
+
+| Properties     |  type   |          description          | default |
+| :------------- | :-----: | :---------------------------: | ------: |
+| each_time      |   int   |    time of gravity update     |       1 |
+| delay_callback |   int   | time delay of callback called |    1000 |
+| disable        | boolean | stop / continue event listen  |    true |
+| isSuppord      | boolean | permission granted or deined  |   false |

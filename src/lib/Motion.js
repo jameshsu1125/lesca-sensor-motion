@@ -1,33 +1,39 @@
 module.exports = {
 	is: true,
 	each_time: 1,
-	delayCallback: 1000,
-	ds: true,
-	init(ready) {
+	delay_callback: 1000,
+	disable: true,
+	isSuppord: false,
+	init(granted, deined = () => {}) {
 		if (this.get() === 'desktop') {
 			//desktop escap all
 			this.error();
 			return false;
 		}
 
-		this.ready = ready;
-
+		// IOS 14+ need permission request.
 		if (typeof DeviceMotionEvent.requestPermission === 'function') {
-			// IOS 14+
-
+			// ISO need SSL also.
 			if (window.location.protocol.indexOf('https') < 0) {
-				// SSL require
 				this.error();
 				return false;
 			}
 
 			DeviceMotionEvent.requestPermission()
 				.then((permissionState) => {
-					if (permissionState === 'granted') this.ready();
-					else alert('permission denied!');
+					if (permissionState === 'granted') {
+						this.isSuppord = true;
+						granted();
+					} else {
+						this.isSuppord = false;
+						deined();
+					}
 				})
 				.catch(console.error);
-		} else this.ready();
+		} else {
+			this.isSuppord = true;
+			granted();
+		}
 	},
 	addEvent(v = 20, callback) {
 		this.f = this.call.bind(this);
@@ -43,11 +49,8 @@ module.exports = {
 	call(e) {
 		this.d = e.accelerationIncludingGravity;
 	},
-	disable(v) {
-		this.ds = v;
-	},
 	sync() {
-		if (!this.ds) return;
+		if (!this.disable) return;
 
 		let x = Math.abs(this.d.x - this.d2.x),
 			y = Math.abs(this.d.y - this.d2.y),
@@ -61,7 +64,7 @@ module.exports = {
 			this.d2 = this.d = { x: 0, y: 0, z: 0 };
 			setTimeout(() => {
 				this.is = true;
-			}, this.delayCallback);
+			}, this.delay_callback);
 		}
 
 		this.d2 = this.d;
