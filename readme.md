@@ -14,16 +14,15 @@ import Motion from 'lesca-sensor-motion';
 function require_permission() {
 	Motion.init(
 		function () {
-			// permission granted
 			console.log('permission granted');
 
+			// todo: add event after get permission.
 			Motion.addEvent(20, (e) => {
 				// shake your mobile device. alert the gravity directly.
 				alert(e);
 			});
 		},
 		function () {
-			// permission deined
 			console.log('permission deined');
 		}
 	);

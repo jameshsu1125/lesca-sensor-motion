@@ -1,6 +1,6 @@
 {
 	"name": "lesca-sensor-motion",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "mobile sensor : device motion. request permission and return total gravity",
 	"main": "lib/index.js",
 	"scripts": {
