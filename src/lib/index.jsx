@@ -68,11 +68,13 @@ export default class Motion {
 
 		this.isQueue = true;
 
+		this.f = this.call.bind(this);
+
 		this.callback = callback || logOut;
 		this.force = force;
 		this.sum = this.sum2 = { x: 0, y: 0, z: 0 };
 
-		window.addEventListener('devicemotion', (e) => this.call(e));
+		window.addEventListener('devicemotion', this.f);
 		this.queue = setInterval(() => {
 			this.sync();
 		}, this.each);
@@ -102,6 +104,10 @@ export default class Motion {
 
 	call(e) {
 		this.sum = e.accelerationIncludingGravity;
+	}
+
+	destory() {
+		window.removeEventListener('devicemotion', this.f);
 	}
 
 	error(e) {
