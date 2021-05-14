@@ -1,17 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Motion from './../lib/index';
-
 import './styles.css';
 
+const motion = new Motion();
+
 function require_permission() {
-	Motion.init(
+	motion.init(
 		function () {
 			// permission granted
 			console.log('permission granted');
 
-			Motion.addEvent(20, (e) => {
-				// shake your mobile device. alert the gravity directly.
+			motion.addlistener(20, (e) => {
+				// shake your mobile device. alert the force directly.
 				alert(e);
 			});
 		},
@@ -23,7 +24,7 @@ function require_permission() {
 }
 
 function disable_switch() {
-	Motion.disable = !Motion.disable;
+	motion.disable = !motion.disable;
 }
 
 function Demo() {

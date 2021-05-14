@@ -30,5 +30,7 @@ module.exports = {
 		contentBase: path.join(__dirname, 'docs'),
 		port: 8000,
 		stats: 'minimal',
+		host: '0.0.0.0',
+		https: true,
 	},
 };

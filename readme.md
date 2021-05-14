@@ -11,19 +11,20 @@ $ npm install lesca-sensor-motion --save
 ```javascript
 import Motion from 'lesca-sensor-motion';
 
+const motion = new Motion();
 function require_permission() {
-	Motion.init(
+	motion.init(
 		function () {
 			console.log('permission granted');
 
 			// todo: add event after get permission.
-			Motion.addEvent(20, (e) => {
+			motion.addlistener(20, (e) => {
 				// shake your mobile device. alert the gravity directly.
 				alert(e);
 			});
 		},
 		function () {
-			console.log('permission deined');
+			motion.log('permission deined');
 		}
 	);
 }
@@ -33,19 +34,19 @@ function require_permission() {
 
 # Methods
 
-| method                       | options  |         description          | default |
-| :--------------------------- | :------: | :--------------------------: | ------: |
-| init(granted, deined)        | granted  | call when permission granted |         |
-|                              |  deined  | call when permission deined  |         |
-| addEvent( gravity, callback) | gravity  | exceeds the value of gravity |      20 |
-|                              | callback | call when over gravity value |         |
-| destory()                    |          |         remove event         |         |
+| method                        | options  |         description          | default |
+| :---------------------------- | :------: | :--------------------------: | ------: |
+| init(granted, deined)         | granted  | call when permission granted |         |
+|                               |  deined  | call when permission deined  |  void 0 |
+| addlistener( force, callback) |  force   |  exceeds the value of force  |      20 |
+|                               | callback | call when over gravity value |         |
+| destory()                     |          |         remove event         |         |
 
 # Properties
 
-| Properties     |  type   |          description          | default |
-| :------------- | :-----: | :---------------------------: | ------: |
-| each_time      |   int   |    time of gravity update     |       1 |
-| delay_callback |   int   | time delay of callback called |    1000 |
-| disable        | boolean | stop / continue event listen  |    true |
-| isSuppord      | boolean | permission granted or deined  |   false |
+| Properties |  type   |          description          | default |
+| :--------- | :-----: | :---------------------------: | ------: |
+| each       |   int   |     time of force update      |       1 |
+| delay      |   int   | time delay of callback called |    1000 |
+| disable    | boolean | stop / continue event listen  |    true |
+| isSuppord  | boolean | permission granted or deined  |   false |
