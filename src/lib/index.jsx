@@ -81,7 +81,6 @@ export default class Motion {
 	}
 
 	sync() {
-		console.log(this.disable);
 		if (!this.disable) return;
 
 		const x = Math.abs(this.sum.x - this.sum2.x);
