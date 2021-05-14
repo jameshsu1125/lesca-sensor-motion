@@ -56,6 +56,11 @@ export default class Motion {
 		}
 	}
 
+	/**
+	 * add listener
+	 * @param {number} force a value for shake force
+	 * @param {function} callback
+	 */
 	addlistener(force = 20, callback) {
 		const logOut = (e) => {
 			console.log(e);
