@@ -29,6 +29,7 @@ function require_permission() {
 	);
 }
 
+// init have to exclude on click event
 <button onClick={require_permission}></button>;
 ```
 
