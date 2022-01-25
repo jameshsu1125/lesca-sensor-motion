@@ -1,36 +1,52 @@
-[![dev by JamesHsu](https://img.shields.io/badge/Dev%20by-Jameshsu1125-green)](https://github.com/jameshsu1125/) [![made in Taiwan](https://img.shields.io/badge/Made%20in-Taiwan-orange)](https://github.com/jameshsu1125/)
+[![dev by JamesHsu](https://img.shields.io/badge/Dev%20by-Jameshsu1125-green)](https://github.com/jameshsu1125/) [![made in Taiwan](https://img.shields.io/badge/Made%20in-Taiwan-orange)](https://github.com/jameshsu1125/) [![npm](https://img.shields.io/badge/npm-Jameshsu1125-red)](https://www.npmjs.com/~jameshsu1125)
 
 # Installation
 
 ```sh
-$ npm install lesca-sensor-motion --save
+npm install lesca-sensor-motion --save
 ```
+
+# Demo
+
+[Live Demo](https://jameshsu1125.github.io/lesca-sensor-motion/)
 
 # Usage
 
 ```javascript
+import { useState, useEffect, useMemo } from 'react';
 import Motion from 'lesca-sensor-motion';
 
-const motion = new Motion();
-function require_permission() {
-	motion.init(
-		function () {
-			console.log('permission granted');
+// (1) waiting for permission => Must be user-triggered event and SSL required
+// (2) add addListener
+const Components = () => {
+	const [state, setState] = useState(false);
+	const motion = useMemo(() => new Motion(), []);
 
-			// todo: add event after get permission.
-			motion.addlistener(20, (e) => {
-				// shake your mobile device. alert the gravity directly.
+	const require_permission = () => {
+		motion.init(
+			() => {
+				// permission granted
+				setState(true);
+			},
+			() => {
+				// permission deined
+			}
+		);
+	};
+
+	useEffect(() => {
+		if (state) {
+			motion.addListener(20, (e) => {
 				alert(e);
 			});
-		},
-		function () {
-			motion.log('permission deined');
 		}
-	);
-}
+		return () => {
+			motion.destory();
+		};
+	}, [state]);
 
-// init have to exclude on click event
-<button onClick={require_permission}></button>;
+	return <button onClick={require_permission}></button>;
+};
 ```
 
 # Methods
@@ -38,10 +54,10 @@ function require_permission() {
 | method                        | options  |         description          | default |
 | :---------------------------- | :------: | :--------------------------: | ------: |
 | init(granted, deined)         | granted  | call when permission granted |         |
-|                               |  deined  | call when permission deined  |  void 0 |
-| addlistener( force, callback) |  force   |  exceeds the value of force  |      20 |
+|                               |  deined  | call when permission deined  |         |
+| addListener( force, callback) |  force   |  exceeds the value of force  |      20 |
 |                               | callback | call when over gravity value |         |
-| destory()                     |          |         remove event         |         |
+| destory()                     |          |        destory event         |         |
 
 # Properties
 

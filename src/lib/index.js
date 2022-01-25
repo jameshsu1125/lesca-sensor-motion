@@ -61,7 +61,7 @@ export default class Motion {
 	 * @param {number} force a value for shake force
 	 * @param {function} callback
 	 */
-	addlistener(force = 20, callback) {
+	addListener(force = 20, callback) {
 		const logOut = (e) => {
 			console.log(e);
 		};
@@ -105,6 +105,9 @@ export default class Motion {
 		this.sum = e.accelerationIncludingGravity;
 	}
 
+	/**
+	 * remove Events
+	 */
 	destory() {
 		window.removeEventListener('devicemotion', this.f);
 	}
