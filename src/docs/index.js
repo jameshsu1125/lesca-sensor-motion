@@ -50,6 +50,7 @@ function Demo() {
 			</div>
 			<div>
 				<Qrcode content={window.location.href} size='300' />
+				<p>test on your mobile device</p>
 			</div>
 			<div>
 				<code>{message}</code>
