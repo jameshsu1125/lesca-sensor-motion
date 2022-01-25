@@ -32,7 +32,7 @@ function Demo() {
 	useEffect(() => {
 		// require permission
 		if (state) {
-			motion.addlistener(20, (e) => {
+			motion.addListener(20, (e) => {
 				// shake your mobile device. alert the force directly.
 				setMessage(`detect motion = ${e}`);
 			});
