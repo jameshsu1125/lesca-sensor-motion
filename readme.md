@@ -23,15 +23,15 @@ const Components = () => {
 	const motion = useMemo(() => new Motion(), []);
 
 	const require_permission = () => {
-		motion.init(
-			() => {
+		motion
+			.permission()
+			.then(() => {
 				// permission granted
 				setState(true);
-			},
-			() => {
+			})
+			.catch(() => {
 				// permission deined
-			}
-		);
+			});
 	};
 
 	useEffect(() => {
