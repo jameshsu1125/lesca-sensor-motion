@@ -20,40 +20,38 @@ export default class Motion {
 
 	/**
 	 * initial on click event
-	 * @param {function} granted permission granted function
-	 * @param {function} deined permission deined function
 	 * @returns
 	 */
-	init(granted, deined = void 0) {
-		//desktop escap all
-		if (this.get() === 'desktop') {
-			this.error();
-			return false;
-		}
-
-		// IOS 14+ need permission request.
-		if (typeof DeviceMotionEvent.requestPermission === 'function') {
-			// ISO need SSL also.
-			if (protocol.indexOf('https') < 0) {
-				this.error();
-				return false;
+	permission() {
+		return new Promise((res, rej) => {
+			//desktop escap all
+			if (this.get() === 'desktop') {
+				rej('desktop is not support');
 			}
 
-			DeviceMotionEvent.requestPermission()
-				.then((permissionState) => {
-					if (permissionState === 'granted') {
-						this.isSuppord = true;
-						granted();
-					} else {
-						this.isSuppord = false;
-						deined();
-					}
-				})
-				.catch(console.error);
-		} else {
-			this.isSuppord = true;
-			granted();
-		}
+			// IOS 14+ need permission request.
+			if (typeof DeviceMotionEvent.requestPermission === 'function') {
+				// ISO need SSL also.
+				if (protocol.indexOf('https') < 0) {
+					rej('https require');
+				}
+
+				DeviceMotionEvent.requestPermission()
+					.then((permissionState) => {
+						if (permissionState === 'granted') {
+							this.isSuppord = true;
+							res();
+						} else {
+							this.isSuppord = false;
+							rej('user deined');
+						}
+					})
+					.catch(console.error);
+			} else {
+				this.isSuppord = true;
+				res();
+			}
+		});
 	}
 
 	/**
