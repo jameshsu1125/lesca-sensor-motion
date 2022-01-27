@@ -51,13 +51,12 @@ const Components = () => {
 
 # Methods
 
-| method                        | options  |         description          | default |
-| :---------------------------- | :------: | :--------------------------: | ------: |
-| init(granted, deined)         | granted  | call when permission granted |         |
-|                               |  deined  | call when permission deined  |         |
-| addListener( force, callback) |  force   |  exceeds the value of force  |      20 |
-|                               | callback | call when over gravity value |         |
-| destory()                     |          |        destory event         |         |
+| method                         |    options     |         description          | default |
+| :----------------------------- | :------------: | :--------------------------: | ------: |
+| .permission()                  | return Promise |     ask user permission      |         |
+| .addListener( force, callback) |     force      |  exceeds the value of force  |      20 |
+|                                |    callback    | call when over gravity value |         |
+| .destory()                     |                |        destory event         |         |
 
 # Properties
 

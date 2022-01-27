@@ -1,6 +1,6 @@
 {
 	"name": "lesca-sensor-motion",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "The mobile device motion. include request permission and return user shaking gravity value.",
 	"main": "lib/index.js",
 	"scripts": {
