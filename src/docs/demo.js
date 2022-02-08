@@ -30,7 +30,7 @@ const Demo = () => {
 	useEffect(() => {
 		// require permission
 		if (state) {
-			motion.addListener(20, (e) => {
+			motion.addEventListener(20, (e) => {
 				// get user shaking gravity value
 				setMessage(`detect motion = ${e}`);
 			});

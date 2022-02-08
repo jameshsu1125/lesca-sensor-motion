@@ -28,7 +28,7 @@ const code2 = `const requirePermission = () => {
 return <button onClick={require_permission}>permission require</button>
 `;
 
-const code3 = `motion.addListener(20, (e) => {
+const code3 = `motion.addEventListener(20, (e) => {
 	// get user shaking gravity value.
 	alert(e)
 });`;
@@ -55,7 +55,7 @@ const Demo = () => {
 	useEffect(() => {
 		// waitting for permission
 		if (state) {
-			motion.addListener(20, (value) => {
+			motion.addEventListener(20, (value) => {
 				// get user shaking gravity value
 				alert(value);
 			});

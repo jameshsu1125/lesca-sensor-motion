@@ -36,7 +36,7 @@ const Components = () => {
 
 	useEffect(() => {
 		if (state) {
-			motion.addListener(20, (e) => {
+			motion.addEventListener(20, (e) => {
 				alert(e);
 			});
 		}
@@ -51,12 +51,12 @@ const Components = () => {
 
 # Methods
 
-| method                         |    options     |         description          | default |
-| :----------------------------- | :------------: | :--------------------------: | ------: |
-| .permission()                  | return Promise |     ask user permission      |         |
-| .addListener( force, callback) |     force      |  exceeds the value of force  |      20 |
-|                                |    callback    | call when over gravity value |         |
-| .destory()                     |                |        destory event         |         |
+| method                              |    options     |         description          | default |
+| :---------------------------------- | :------------: | :--------------------------: | ------: |
+| .permission()                       | return Promise |     ask user permission      |         |
+| .addEventListener( force, callback) |     force      |  exceeds the value of force  |      20 |
+|                                     |    callback    | call when over gravity value |         |
+| .destory()                          |                |        destory event         |         |
 
 # Properties
 
