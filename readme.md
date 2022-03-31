@@ -60,17 +60,17 @@ const Components = () => {
 | method | description | return |
 | :-- | :-: | --: |
 | .permission() | require user permission | [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) |
-| .addEventListener(<span style='color:#53bbe9;'>force</span>:<span style='color:gray;'>number</span>, <span style='color:#53bbe9;'>handler</span>:<span style='color:gray;'>function</span>) | exceeds the value of force | 20 |
+| .addEventListener(`force`:_number_, `handler`:_function_) | exceeds the value of force | 20 |
 | .destory() | destory event | void |
 
 ### Properties
 
-| Properties                                          |          description          | default |
-| :-------------------------------------------------- | :---------------------------: | ------: |
-| .each:<span style='color:gray;'>int</span>          |     time of force update      |       1 |
-| .delay:<span style='color:gray;'>int</span>         | time delay of callback called |    1000 |
-| .disable:<span style='color:gray;'>boolean</span>   | stop / continue event listen  |    true |
-| .isSuppord:<span style='color:gray;'>boolean</span> | permission granted or deined  |   false |
+| Properties           |          description          | default |
+| :------------------- | :---------------------------: | ------: |
+| .each: _int_         |     time of force update      |       1 |
+| .delay:_int_         | time delay of callback called |    1000 |
+| .disable:_boolean_   | stop / continue event listen  |    true |
+| .isSuppord:_boolean_ | permission granted or deined  |   false |
 
 ### Features
 
