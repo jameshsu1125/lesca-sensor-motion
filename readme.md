@@ -60,17 +60,17 @@ const Components = () => {
 | method | description | return |
 | :-- | :-: | --: |
 | .permission() | require user permission | [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) |
-| .addEventListener(`force`:_number_, `handler`:_function_) | exceeds the value of force | 20 |
+| .addEventListener(`force`: _number_, `handler`: _function_) | exceeds the value of force | 20 |
 | .destory() | destory event | void |
 
 ### Properties
 
-| Properties           |          description          | default |
-| :------------------- | :---------------------------: | ------: |
-| .each: _int_         |     time of force update      |       1 |
-| .delay:_int_         | time delay of callback called |    1000 |
-| .disable:_boolean_   | stop / continue event listen  |    true |
-| .isSuppord:_boolean_ | permission granted or deined  |   false |
+| Properties             |          description          | default |
+| :--------------------- | :---------------------------: | ------: |
+| .each : _int_          |     time of force update      |       1 |
+| .delay : _int_         | time delay of callback called |    1000 |
+| .disable : _boolean_   | stop / continue event listen  |    true |
+| .isSuppord : _boolean_ | permission granted or deined  |   false |
 
 ### Features
 
