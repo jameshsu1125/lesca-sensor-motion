@@ -2,6 +2,7 @@ import { Button, ButtonGroup } from '@mui/material';
 import { useEffect, useMemo, useState, useRef } from 'react';
 import Motion from '../../lib/index';
 import Qrcode from 'lesca-react-qrcode';
+import QueryString from 'lesca-user-agent';
 
 const Demo = () => {
   const [state, setState] = useState(false);
@@ -48,9 +49,13 @@ const Demo = () => {
   return (
     <>
       <h2>Demo</h2>
-      <div className='stage'>
-        <div ref={ballRef} className='ball' style={{ width: `${size}px`, height: `${size}px` }} />
-      </div>
+      {QueryString.get() === 'desktop' ? (
+        <Qrcode size={300} content={window.location.href} />
+      ) : (
+        <div className='stage'>
+          <div ref={ballRef} className='ball' style={{ width: `${size}px`, height: `${size}px` }} />
+        </div>
+      )}
       <pre>
         <code>{message}</code>
       </pre>

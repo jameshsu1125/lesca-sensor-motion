@@ -23,33 +23,33 @@ import Motion from 'lesca-sensor-motion';
 // (1) waiting for permission => Must be user-triggered event and SSL required
 // (2) add addListener
 const Components = () => {
-	const [state, setState] = useState(false);
-	const motion = useMemo(() => new Motion(), []);
+  const [state, setState] = useState(false);
+  const motion = useMemo(() => new Motion(), []);
 
-	const require_permission = () => {
-		motion
-			.permission()
-			.then(() => {
-				// permission granted
-				setState(true);
-			})
-			.catch(() => {
-				// permission deined
-			});
-	};
+  const require_permission = () => {
+    motion
+      .permission()
+      .then(() => {
+        // permission granted
+        setState(true);
+      })
+      .catch(() => {
+        // permission deined
+      });
+  };
 
-	useEffect(() => {
-		if (state) {
-			motion.addEventListener(20, (e) => {
-				alert(e);
-			});
-		}
-		return () => {
-			motion.destory();
-		};
-	}, [state]);
+  useEffect(() => {
+    if (state) {
+      motion.addEventListener(20, (e) => {
+        alert(e);
+      });
+    }
+    return () => {
+      motion.destory();
+    };
+  }, [state]);
 
-	return <button onClick={require_permission}>click me</button>;
+  return <button onClick={require_permission}>click me</button>;
 };
 ```
 
@@ -57,11 +57,11 @@ const Components = () => {
 
 ### Methods
 
-| method | description | return |
-| :-- | :-: | --: |
-| .permission() | require user permission | [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) |
-| .addEventListener(`force`: _number_, `handler`: _function_) | exceeds the value of force | 20 |
-| .destory() | destory event | void |
+| method                                                      |        description         |                                                                                              return |
+| :---------------------------------------------------------- | :------------------------: | --------------------------------------------------------------------------------------------------: |
+| .permission()                                               |  require user permission   | [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) |
+| .addEventListener(`force`: _number_, `handler`: _function_) | exceeds the value of force |                                                                                                  20 |
+| .destory()                                                  |       destory event        |                                                                                                void |
 
 ### Properties
 
