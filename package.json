@@ -5,13 +5,13 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "watch": "babel src/lib -w -d lib --copy-files",
-    "op": "babel src/lib -d lib --copy-files",
-    "dev": "concurrently \"npm run watch\" \"npm run start\"",
-    "rm": "rm -rf node_modules/ package-lock.json",
+    "watch": "babel --watch src/lib --out-dir lib --extensions '.ts,.tsx'",
+    "build": "NODE_ENV=production webpack",
     "deploy": "gh-pages -d dist",
-    "docs:prod": "webpack --mode production",
-    "build": "NODE_ENV=production webpack"
+    "tsc": "npx tsc --watch",
+    "dev": "concurrently \"npm run watch\" \"npm run tsc\" \"npm run start\"",
+    "rm": "rm -rf node_modules/ package-lock.json",
+    "op": "babel src/lib -d lib --copy-files"
   },
   "keywords": [
     "lesca",
