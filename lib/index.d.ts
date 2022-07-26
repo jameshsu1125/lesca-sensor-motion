@@ -4,11 +4,15 @@ export default class Motion {
     delay: number;
     each: number;
     private isQueue;
-    private bindFunction;
+    private force;
     private sum;
     private sum2;
+    private bindFunction;
     private callback;
-    private force;
+    private call;
+    private error;
+    private sync;
+    private get;
     private queue;
     /**
      * new Motion(1000, 50);
@@ -27,12 +31,8 @@ export default class Motion {
      * @param {function} callback
      */
     addEventListener(force: number | undefined, callback: Function): void;
-    sync(): void;
-    call(e: DeviceMotionEvent): void;
     /**
      * remove Events
      */
     destory(): void;
-    error(): void;
-    get(): "mobile" | "desktop";
 }

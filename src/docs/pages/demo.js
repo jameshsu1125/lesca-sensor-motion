@@ -37,6 +37,7 @@ const Demo = () => {
     if (state) {
       motion.addEventListener(20, (e) => {
         // get user shaking gravity value
+        console.log(e);
         setMessage(`detect motion = ${e}`);
         setSize((s) => s + e);
       });

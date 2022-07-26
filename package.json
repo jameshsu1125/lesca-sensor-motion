@@ -1,6 +1,6 @@
 {
   "name": "lesca-sensor-motion",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "collect `device-motion` to a useful value. Include user permission and event listener.",
   "main": "lib/index.js",
   "scripts": {
