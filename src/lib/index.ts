@@ -6,15 +6,15 @@ const { protocol } = location;
 
 enum Permission {
   granted = 'granted',
-  deined = 'deined',
+  denied = 'denied',
 }
 
 enum STATUS {
   unset = 'unset',
   desktop = 'desktop is not support',
   ssl = 'https require',
-  userDeined = 'user deined',
-  deined = 'motion not support!',
+  userDenied = 'user denied',
+  denied = 'motion not support!',
 }
 
 const defaultAccelerationIncludingGravity: DeviceMotionEventAcceleration = {
@@ -25,7 +25,7 @@ const defaultAccelerationIncludingGravity: DeviceMotionEventAcceleration = {
 
 export default class Motion {
   public disable: boolean;
-  public isSuppord: boolean;
+  public isSupported: boolean;
   public delay: number;
   public each: number;
   private isQueue: boolean;
@@ -42,16 +42,16 @@ export default class Motion {
 
   /**
    * new Motion(1000, 50);
-   * @param {number} delay if callback called, the lisener will stop as deplay time;
+   * @param {number} delay if callback called, the listener will stop as delay time;
    * @param {number} each time of each frame
    */
   constructor(delay: number = 1000, each: number = 50) {
-    this.disable = true; // use for stop listen not distory
-    this.isSuppord = false; // check devicemotion support?
-    this.delay = delay; // if callback called, the lisener will stop as deplay time;
+    this.disable = true; // use for stop listen not destroy
+    this.isSupported = false; // check devicemotion support?
+    this.delay = delay; // if callback called, the listener will stop as delay time;
     this.each = each; // time of each frame
 
-    this.isQueue = true; // for deplay use.
+    this.isQueue = true; // for delay use.
     this.sum = defaultAccelerationIncludingGravity;
     this.sum2 = defaultAccelerationIncludingGravity;
     this.force = 20;
@@ -61,7 +61,7 @@ export default class Motion {
     this.call = (e: DeviceMotionEvent) => {
       this.sum = e.accelerationIncludingGravity;
     };
-    this.error = () => console.log(STATUS.deined);
+    this.error = () => console.log(STATUS.denied);
     this.sync = () => {
       if (!this.disable) return;
 
@@ -103,7 +103,7 @@ export default class Motion {
    */
   permission() {
     return new Promise((res, rej) => {
-      //desktop escap all
+      //desktop escape all
       if (this.get() === 'desktop') {
         rej(STATUS.desktop);
       }
@@ -117,17 +117,17 @@ export default class Motion {
           .requestPermission()
           .then((permissionState: string) => {
             if (permissionState === Permission.granted) {
-              this.isSuppord = true;
+              this.isSupported = true;
               res(permissionState);
             } else {
-              this.isSuppord = false;
-              rej(STATUS.userDeined);
+              this.isSupported = false;
+              rej(STATUS.userDenied);
             }
           })
           .catch(this.error);
       } else {
-        this.isSuppord = true;
-        res(Permission.deined);
+        this.isSupported = true;
+        res(Permission.denied);
       }
     });
   }
@@ -150,7 +150,7 @@ export default class Motion {
   /**
    * remove Events
    */
-  destory() {
+  destroy() {
     window.removeEventListener('devicemotion', this.bindFunction);
     if (this.queue) clearInterval(this.queue);
   }

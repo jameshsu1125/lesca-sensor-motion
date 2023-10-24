@@ -41,7 +41,7 @@ const Components = () => {
         setState(true);
       })
       .catch(() => {
-        // permission deined
+        // permission denied
       });
   };
 
@@ -52,7 +52,7 @@ const Components = () => {
       });
     }
     return () => {
-      motion.destory();
+      motion.destroy();
     };
   }, [state]);
 
@@ -68,7 +68,7 @@ const Components = () => {
 | :---------------------------------------------------------- | :------------------------: | --------------------------------------------------------------------------------------------------: |
 | .permission()                                               |  require user permission   | [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) |
 | .addEventListener(`force`: _number_, `handler`: _function_) | exceeds the value of force |                                                                                                  20 |
-| .destory()                                                  |       destory event        |                                                                                                void |
+| .destroy()                                                  |       destroy event        |                                                                                                void |
 
 ### Properties
 
@@ -77,7 +77,7 @@ const Components = () => {
 | .each : _int_          |     time of force update      |       1 |
 | .delay : _int_         | time delay of callback called |    1000 |
 | .disable : _boolean_   | stop / continue event listen  |    true |
-| .isSuppord : _boolean_ | permission granted or deined  |   false |
+| .isSupport : _boolean_ | permission granted or denied  |   false |
 
 ### Features
 

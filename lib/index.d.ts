@@ -1,6 +1,6 @@
 export default class Motion {
     disable: boolean;
-    isSuppord: boolean;
+    isSupported: boolean;
     delay: number;
     each: number;
     private isQueue;
@@ -16,7 +16,7 @@ export default class Motion {
     private queue;
     /**
      * new Motion(1000, 50);
-     * @param {number} delay if callback called, the lisener will stop as deplay time;
+     * @param {number} delay if callback called, the listener will stop as delay time;
      * @param {number} each time of each frame
      */
     constructor(delay?: number, each?: number);
@@ -34,5 +34,5 @@ export default class Motion {
     /**
      * remove Events
      */
-    destory(): void;
+    destroy(): void;
 }
